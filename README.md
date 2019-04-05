@@ -1,8 +1,8 @@
 # Project 1 — Book Review Website
 
 Web Programming with Python and JavaScript
-What the project is about:
-What did I learn:
+What the project is about:  
+What did I learn:  
 
 ## Project Setup  
 1. Install dependencies & requirements  
