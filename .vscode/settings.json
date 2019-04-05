@@ -1,0 +1,7 @@
+{
+  "python.pythonPath": "/Users/a/anaconda3/bin/python",
+  "python.linting.enabled": false,
+  "python.linting.pylintEnabled": false,
+  "terminal.foreground": "#00FD61",
+  "terminal.background": "#383737",
+}
