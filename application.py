@@ -57,9 +57,39 @@ def register():
         db.commit()
 
         flash("You are now registered and can log in!", "success")
-        redirect(url_for('index'))
+        return redirect(url_for('index'))
 
     return render_template('register.html', form=form)
+
+
+# user login
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    if request.method == 'POST':
+        # if is submitted, get the username & pass from form
+        username = request.form['username']
+        password_candidate = request.form['password']
+
+        result = db.execute(
+            "SELECT * FROM users WHERE username = :u", {"u": username}
+        )
+
+        if len(list(result)) > 0:
+            # get stored hash
+            data = result.fetchone()
+            password = data['password']
+
+            # compare passwords
+            if sha256_crypt.verify(password_candidate, password):
+                app.logger.info("Password matched")
+
+        else:
+            app.logger.info("No user")
+
+        print(f"user {username} selected!")
+        db.commit()
+
+    return render_template('login.html')
 
 
 @app.route("/<string:name>")
