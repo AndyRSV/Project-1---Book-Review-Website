@@ -1,3 +1,4 @@
+<!-- takes care of messages when re-directing to a link -->
 {% with messages = get_flashed_messages(with_categories=true) %}
 {% if messages %}
 
@@ -7,3 +8,13 @@
 
 {% endif %}
 {% endwith %}
+
+<!-- takes care of messages when there is an error -->
+{% if error %}
+<div class="alert alert-danger">{{ error }}</div>
+{% endif %}
+
+<!-- takes care of messages when success -->
+{% if msg %}
+<div class="alert alert-success">{{ msg }}</div>
+{% endif %}

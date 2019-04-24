@@ -2,14 +2,14 @@
 {% block body %}
 <h1>Login</h1>
 <!-- partial in case there is any messages -->
-{% include 'includes/_messages.html' %}
+
 <form action="" method="POST">
   <div class="form-group">
-    <label for="Username"></label>
+    <label for="Username">Username</label>
     <input type="text" name="username" class="form-control" value="{{request.form.username}}">
   </div>
   <div class="form-group">
-    <label for="Password"></label>
+    <label for="Password">Password</label>
     <input type="password" name="password" class="form-control" value="{{request.form.password}}"
       placeholder="password">
   </div>
