@@ -38,7 +38,8 @@ Title (link), Author, year, isbn -->
 <h3>Popular Books</h3>
 {% for book in books%}
 <div>
-  <a href="/">{{ book['title'] }}</a>
+  <!-- " -->
+  <a href="{{ url_for('book_detail', id_book=book['id_book']) }}">{{ book['title'] }}</a>
   <p>Author: {{ book['author'] }}</p>
   <p>Year: {{ book['year'] }}</p>
 

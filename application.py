@@ -44,14 +44,15 @@ def index():
     books = queryResult.fetchall()[0:3]
 
     print(books)
-    print(f"Numbers of books selected -> {len(books)} books")
+    print(f"Numbers of books in /Home -> {len(books)} books")
+    print("-------------------------------------------")
 
     for book in books:
         print(book)
 
     print(queryResult.keys())
-    # when the users makes a search
 
+    # when the users makes a search
     if request.method == 'POST':
         pass
 
@@ -176,6 +177,16 @@ def dashboard():
     return render_template('dashboard.html')
 
 
-@app.route("/<string:name>")
-def hello(name):
-    return f"hello {name}"
+@app.route('/books/<int:id_book>')
+def book_detail(id_book):
+
+    queryResult = db.execute(
+        "SELECT * FROM books WHERE id_book = :id LIMIT 1", {"id": id_book}
+    )
+    db.commit()
+
+    book = queryResult.fetchone()
+
+    print(book)
+
+    return render_template('book_detail.html', book=book)
