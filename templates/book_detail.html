@@ -1,0 +1,23 @@
+{% extends 'base_generic.html' %}
+
+{% block body %}
+<div class="thumbnail"><img src="" alt=""></div>
+<div class="book-info">
+  <h3 class="book-title">{{book.title}}</h3>
+  <p>Book author: {{ book.author }}</p>
+  <p>Book ISBN: {{ book.isbn }}</p>
+  <p>Published year: {{ book.year }}</p>
+  <p>Average score: {{ book.avg_score }}</p>
+
+
+  {% if book.review_count %}
+  <div>
+    <h4>Reviews <small>count: {{ book.review_count }}</small></h4>
+
+  </div>
+
+  {% endif %}
+
+</div>
+
+{% endblock %}

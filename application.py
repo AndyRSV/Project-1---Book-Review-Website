@@ -27,9 +27,39 @@ db = scoped_session(sessionmaker(bind=engine))
 
 
 # App index
-@app.route("/")
+@app.route("/", methods=['GET'])
 def index():
-    return render_template('home.html')
+
+    # random functions
+    # print(result.keys())
+    # print(type(books))
+
+    # randomly selects 3 books in the database
+    queryResult = db.execute(
+        "SELECT * FROM books ORDER BY RANDOM() LIMIT 3"
+    )
+
+    db.commit()
+
+    books = queryResult.fetchall()[0:3]
+
+    print(books)
+    print(f"Numbers of books in /Home -> {len(books)} books")
+    print("-------------------------------------------")
+
+    for book in books:
+        print(book)
+
+    print(queryResult.keys())
+
+    # when the users makes a search
+    if request.method == 'POST':
+        pass
+
+    # put the books in list or object and pass it along the render_template method
+
+    # phase 2: add searh bar functionnality
+    return render_template('home.html', books=books)
 
 # Register form class
 
@@ -147,6 +177,16 @@ def dashboard():
     return render_template('dashboard.html')
 
 
-@app.route("/<string:name>")
-def hello(name):
-    return f"hello {name}"
+@app.route('/books/<int:id_book>')
+def book_detail(id_book):
+
+    queryResult = db.execute(
+        "SELECT * FROM books WHERE id_book = :id LIMIT 1", {"id": id_book}
+    )
+    db.commit()
+
+    book = queryResult.fetchone()
+
+    print(book)
+
+    return render_template('book_detail.html', book=book)
