@@ -10,7 +10,7 @@
   <p>Average score: {{ book.avg_score }}</p>
 
 
-  {% if book.review_count %}
+  {% if book.review_count != None %}
   <div>
     <h4>Reviews <small>count: {{ book.review_count }}</small></h4>
 
