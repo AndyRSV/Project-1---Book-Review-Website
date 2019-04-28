@@ -1,6 +1,50 @@
 {% extends 'base_generic.html' %}
 
 {% block body %}
+<!-- if there is books passed as object
+create list item with the book information on these object
+Title (link), Author, year, isbn -->
 
+<h1>Search books</h1>
+<!-- partial in case there is any messages -->
+
+<!-- <form action="" method="POST">
+  <div class="form-group">
+    <label for="Username">Username</label>
+    <input type="text" name="username" class="form-control" value="{{request.form.username}}">
+  </div>
+  <div class="form-group">
+    <label for="Password">Password</label>
+    <input type="password" name="password" class="form-control" value="{{request.form.password}}"
+      placeholder="password">
+  </div> -->
+
+
+<div class="form-row">
+  <div class="form-group col-md-6">
+    <label for="title">Title</label>
+    <input type="text" name="title" value="{{request.form.title}}" class="form-control" placeholder="book title">
+  </div>
+  <div class="form-group col-md-6">
+    <label for="author">Author</label>
+    <input type="text" name="author" value="{{request.form.author}}" class="form-control" placeholder="book author">
+  </div>
+
+</div>
+<button type="submit" class="btn btn-primary">Search</button>
+</form>
+
+
+<h3>Popular Books</h3>
+{% for book in books%}
+<div>
+  <a href="/">{{ book['title'] }}</a>
+  <p>Author: {{ book['author'] }}</p>
+  <p>Year: {{ book['year'] }}</p>
+
+
+</div>
+
+{% endfor %}
 
 {% endblock %}
